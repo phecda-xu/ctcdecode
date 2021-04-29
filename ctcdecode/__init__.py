@@ -67,8 +67,8 @@ class CTCBeamDecoder(object):
             seq_lens = torch.IntTensor(batch_size).fill_(max_seq_len)
         else:
             seq_lens = seq_lens.cpu().int()
-        output = torch.IntTensor(batch_size, self._beam_width, max_seq_len).cpu().int()
-        timesteps = torch.IntTensor(batch_size, self._beam_width, max_seq_len).cpu().int()
+        output = torch.IntTensor(batch_size, self._beam_width, max_seq_len).zero_().cpu().int()
+        timesteps = torch.IntTensor(batch_size, self._beam_width, max_seq_len).zero_().cpu().int()
         scores = torch.FloatTensor(batch_size, self._beam_width).cpu().float()
         out_seq_len = torch.zeros(batch_size, self._beam_width).cpu().int()
         if self._scorer:
